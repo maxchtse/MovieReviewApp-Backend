@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 import static javax.security.auth.callback.ConfirmationCallback.OK;
 
@@ -24,8 +25,8 @@ public class MovieController {
         return new ResponseEntity<List<Movie>>(movieService.allMovies(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Movie> getSingleMovie(@PathVariable ObjectId id) {
-        return
+    @GetMapping("/{imdbId}")
+    public ResponseEntity<Optional<Movie>> getSingleMovie(@PathVariable String imdbId) {
+        return new ResponseEntity<Optional<Movie>>(movieService.singleMovie(imdbId), HttpStatus.OK);
     }
 }
